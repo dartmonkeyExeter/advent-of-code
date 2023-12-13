@@ -16,8 +16,8 @@ for line in file:
     line = line.strip()
 
     ID = line.strip("Game ")
+    ID = ID.strip()
     ID = int(ID.split(": ")[0])
-
     games = line.split(": ")[1]
     games = games.split(", ")
 
@@ -31,18 +31,15 @@ for line in file:
         else:
             new_games.append(i)
 
-    impossible = False
-
-    for idx, i in enumerate(new_games):
+    impossible = 0
+    for i in new_games:
         amount = int(i.split(" ")[0])
         colour = i.split(" ")[1]
         maximum = colour_to_max[colour]
-
         if amount > maximum:
-            impossible = True
+            impossible = 1
             break
-    if impossible is False:
-
+    if impossible == 0:
         answer += ID
 
 print(answer)
