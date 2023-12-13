@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 file = open("input.txt")
 
 # 12 max red, 13 max green, 14 max blue
@@ -19,22 +17,13 @@ for line in file:
     ID = ID.strip()
     ID = int(ID.split(": ")[0])
     games = line.split(": ")[1]
+    games = games.replace(";", ",")
     games = games.split(", ")
 
-    new_games = []
-
-    for i in games:
-        if ";" in i:
-            formatted = i.split("; ")
-            new_games.append(formatted[0])
-            new_games.append(formatted[1])
-        else:
-            new_games.append(i)
-
     impossible = 0
-    for i in new_games:
+    for i in games:
         amount = int(i.split(" ")[0])
-        colour = i.split(" ")[1]
+        colour = i.split(" ")[1].strip()
         maximum = colour_to_max[colour]
         if amount > maximum:
             impossible = 1
