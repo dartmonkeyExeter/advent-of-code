@@ -1,0 +1,35 @@
+file = open("input.txt")
+
+array = []
+num = []
+num_pos = []
+
+total = 0
+
+already_num = False
+
+for line in file:
+    array.append(list(line))
+
+count = 0
+
+for row_idx, row in enumerate(array):
+    for cell_idx, cell in enumerate(row):
+        try:
+            int(cell)
+            count += 1
+        except ValueError:
+            if count != 0:
+                for coords in num_pos:
+                    for i in range(-1,2):
+                        for j in range(-1, 2):
+                            try:
+                                array[coords[0]][coords[1]]
+
+            else: count = 0
+        if count != 0:
+            num.append(cell)
+            num_pos.append((row_idx, cell_idx))
+
+
+print(num)
